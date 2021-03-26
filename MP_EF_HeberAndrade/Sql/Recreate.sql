@@ -1,0 +1,17 @@
+﻿USE master
+CREATE DATABASE AssetsCatalog
+
+GO
+
+USE BlogPostDemo
+
+DROP TABLE IF EXISTS BlogPost
+
+CREATE TABLE BlogPost
+(
+	Id INT IDENTITY(1,1) PRIMARY KEY,
+    Title NVARCHAR(50) NULL,
+	Author NVARCHAR(50) NULL,
+)
+
+GO
