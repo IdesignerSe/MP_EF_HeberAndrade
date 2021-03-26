@@ -12,6 +12,8 @@ namespace MP_EF_HeberAndrade
         {
             using (var dbContext = new AssetsContext())
             {
+                var app = new App();
+                app.Run();
 
                 Computer computerItem = new Computer("MacBook", "2018 15 inch ", 20180101, 13000, 20211201, 8000);
                 string classBrand = computerItem.GetType().Name;

@@ -17,7 +17,7 @@ namespace MP_EF_HeberAndrade
 
         public static void AddSomeTitles()
         {
-            context.RemoveRange(context.Computers);
+            context.AddRange(context.Computers);
             context.SaveChanges();
         }
 
