@@ -6,7 +6,7 @@ namespace MP_EF_HeberAndrade
 {
     public class App
     {
-        static BlogContext context = new BlogContext();
+        static AssetsContext context = new AssetsContext();
 
         public void Run()
         {
@@ -42,17 +42,17 @@ namespace MP_EF_HeberAndrade
 
             int blogPostId = int.Parse(Console.ReadLine());
 
-            var blogPost = context.BlogPosts.Find(blogPostId);
+            var blogPost = context.Computers.Find(blogPostId);
 
-            WriteLine("Den nuvarande titeln är: " + blogPost.Title);
+            WriteLine("Den nuvarande titeln är: " + blogPost.Brand);
 
             Write("Skriv in ny titel: ");
 
             string newTitle = Console.ReadLine();
 
-            blogPost.Title = newTitle;
+            blogPost.Brand = newTitle;
 
-            context.BlogPosts.Update(blogPost);
+            context.Computers.Update(blogPost);
             context.SaveChanges();
 
             Write("Bloggposten uppdaterad.");
@@ -62,9 +62,9 @@ namespace MP_EF_HeberAndrade
 
         private void ShowAllBlogPostsBrief()
         {
-            foreach (var x in context.BlogPosts)
+            foreach (var x in context.Computers)
             {
-                WriteLine(x.Id.ToString().PadRight(5) + x.Title.PadRight(30) + x.Author.PadRight(20));
+                WriteLine(x.Id.ToString().PadRight(5) + x.Brand.PadRight(30) + x.ModelName.PadRight(20));
             }
         }
 

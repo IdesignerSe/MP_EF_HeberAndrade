@@ -15,6 +15,13 @@ namespace MP_EF_HeberAndrade
             context.SaveChanges();
         }
 
+        public static void AddSomeTitles()
+        {
+            context.RemoveRange(context.Computers);
+            context.SaveChanges();
+        }
+
+
         public static void AddComputers()
         {
 
