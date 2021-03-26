@@ -1,4 +1,6 @@
 ﻿
 USE AssetsCatalog
 
-SELECT * FROM BlogPost
+SELECT * FROM Computer
+SELECT * FROM Phone
+SELECT * FROM Tv

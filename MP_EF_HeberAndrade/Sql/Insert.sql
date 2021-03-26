@@ -1,9 +1,11 @@
 ﻿
 USE AssetsCatalog
 
-INSERT INTO BlogPost (Author, Title) 
-VALUES ('Lily', 'The sun is bright')
+INSERT INTO Computer (Brand, ModelName, PurchaseDate,InicialCost,ExpiredDate,ExpiredCost) 
+VALUES ("MacBook", "2019 15 inch ", 20180101, 16000, 20211201, 10000);
 
-INSERT INTO BlogPost (Author, Title) 
-VALUES ('Ethan', 'I will go swimming')
+INSERT INTO Phone (Brand, ModelName, PurchaseDate,InicialCost,ExpiredDate,ExpiredCost)
+VALUES ("Iphone ", "XS ", 20180101, 16000, 20211201, 10000);
 
+INSERT INTO Tv (Brand, ModelName, PurchaseDate,InicialCost,ExpiredDate,ExpiredCost)
+VALUES ("Sony", "2019 15 inch ", 20180101, 16000, 20211201, 10000);

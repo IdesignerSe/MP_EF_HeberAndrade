@@ -1,7 +1,5 @@
 ﻿namespace MP_EF_HeberAndrade
 {
-                    
-
     public class Asset
     {
         public string Brand { get; set; }
