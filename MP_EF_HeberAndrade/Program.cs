@@ -13,14 +13,6 @@ namespace MP_EF_HeberAndrade
             using (var dbContext = new AssetsContext())
             {
 
-                // void Run()
-                //{
-                //    Functions.ClearDatabase();                
-                //    Functions.AddComputers();                
-                //}
-
-                //Header("Update Item");
-
                 Computer computerItem = new Computer("MacBook", "2018 15 inch ", 20180101, 13000, 20211201, 8000);
                 string classBrand = computerItem.GetType().Name;
                 PropertyInfo brand = computerItem.GetType().GetProperty("Brand");
@@ -69,15 +61,6 @@ namespace MP_EF_HeberAndrade
                         var c = computer.GetType().GetProperties().Where(c => c.Name == colWidth.Key).FirstOrDefault();
                         Console.Write(c.GetValue(computer).ToString().PadRight(colWidth.Value + 2));
                     }
-                    Console.WriteLine();
-                }
-
-                void Header(string text)
-                {
-                    Console.Clear();
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine();
-                    Console.WriteLine(text.ToUpper());
                     Console.WriteLine();
                 }
 

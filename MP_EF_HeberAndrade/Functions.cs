@@ -15,8 +15,6 @@ namespace MP_EF_HeberAndrade
             context.SaveChanges();
         }
 
-       
-
         public static void AddComputers()
         {
 
