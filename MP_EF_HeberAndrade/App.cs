@@ -10,19 +10,19 @@ namespace MP_EF_HeberAndrade
 
         public void Run()
         {
-            Functions.ClearDatabase();                //Körs en gång sedan kommenteras ut
-            Functions.AddSomeTitles();                //Körs en gång sedan kommenteras ut
+            Functions.ClearDatabase();                 
+            Functions.AddSomeTitles();                
             MainMenu();
         }
         public void MainMenu()
         {
-            Header("Huvudmeny");
+            Header("Main Menu");
 
             ShowAllBlogPostsBrief();
 
             Console.WriteLine("\nWhat do you want to do?");
-            Console.WriteLine("a) Gå till huvudmeny");
-            Console.WriteLine("b) Uppdatera en blogpost");
+            Console.WriteLine("a) Go to Main Menu");
+            Console.WriteLine("b) Update an Item");
             ConsoleKey command = Console.ReadKey(true).Key;
 
             if (command == ConsoleKey.A)
@@ -38,11 +38,11 @@ namespace MP_EF_HeberAndrade
 
             ShowAllBlogPostsBrief();
 
-            Write("\nVilken bloggpost vill du uppdatera? ");
+            Write("\nWhat  name'sbrand Item are you looking for? ");
 
-            int blogPostId = int.Parse(Console.ReadLine());
+            int computerId = int.Parse(Console.ReadLine());
 
-            var blogPost = context.Computers.Find(blogPostId);
+            var blogPost = context.Computers.Find(computerId);
 
             WriteLine("Den nuvarande titeln är: " + blogPost.Brand);
 
