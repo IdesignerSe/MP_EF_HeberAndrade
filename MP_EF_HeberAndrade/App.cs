@@ -5,7 +5,8 @@ namespace MP_EF_HeberAndrade
 {
     public class App
     {
-       //dbContext _dataAccess = new DataAccess();
+
+        AssetsContext _dataAccess = new AssetsContext();
        //using (AssetsContext = new AssetsContext())
         void Run()
         {
@@ -101,12 +102,12 @@ namespace MP_EF_HeberAndrade
 
             Computer computer = new Computer();
 
-            //Computer.Brand = newBrand;
-            //Computer.ModelName = newModelName;
-            //Computer.PurchaseDate = newPurchaseDate;
-            //Computer.InicialCost = newInitialCost;
-            //Computer.ExpiredDate = newExpiredDate;
-            //Computer.ExpiredCost = newExpiredCost;
+            Computer.Brand = newBrand;
+            Computer.ModelName = newModelName;
+            Computer.PurchaseDate = newPurchaseDate;
+            Computer.InicialCost = newInitialCost;
+            Computer.ExpiredDate = newExpiredDate;
+            Computer.ExpiredCost = newExpiredCost;
 
             Write("Item is now in our list! ");
             Console.ReadKey();
