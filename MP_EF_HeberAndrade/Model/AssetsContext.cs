@@ -102,17 +102,17 @@ namespace MP_EF_HeberAndrade
                 command.Parameters.Add(new SqlParameter("Id", computer.Id));
                 command.Parameters.Add(new SqlParameter("Brand", computer.Brand));
                 command.Parameters.Add(new SqlParameter("ModelName", computer.ModelName));
-                command.Parameters.Add(new SqlParameter("PurchaseDate", computer.ModelName));
-                command.Parameters.Add(new SqlParameter("InicialCost", computer.ModelName));
-                command.Parameters.Add(new SqlParameter("ExpiredDate", computer.ModelName));
-                command.Parameters.Add(new SqlParameter("ExpiredCost", computer.ModelName));
+                command.Parameters.Add(new SqlParameter("PurchaseDate", computer.PurchaseDate));
+                command.Parameters.Add(new SqlParameter("InicialCost", computer.InicialCost));
+                command.Parameters.Add(new SqlParameter("ExpiredDate", computer.ExpiredDate));
+                command.Parameters.Add(new SqlParameter("ExpiredCost", computer.ExpiredCost));
                 command.ExecuteNonQuery();
             }
         }
 
         public void UpdateBlogpost(Computer computer)
         {
-            var sql = "UPDATE BlogPost SET Title=@Title WHERE id=@Id";
+            var sql = "UPDATE Computer SET Brand=@Brand WHERE id=@Id";
 
             using (SqlConnection connection = new SqlConnection(conString))
             using (SqlCommand command = new SqlCommand(sql, connection))
@@ -132,7 +132,7 @@ namespace MP_EF_HeberAndrade
         public void DeleteBlogpost(Computer computer)
         {
             //DELETE FROM BlogPost WHERE Id=3
-            var sql = "DELETE FROM BlogPost WHERE id=@Id";
+            var sql = "DELETE FROM Computer WHERE id=@Id";
 
             using (SqlConnection connection = new SqlConnection(conString))
             using (SqlCommand command = new SqlCommand(sql, connection))
