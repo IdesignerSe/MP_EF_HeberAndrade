@@ -1,8 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 
 namespace MP_EF_HeberAndrade
 {
@@ -101,10 +101,10 @@ namespace MP_EF_HeberAndrade
                 void ClearDatabase()
 
                 {
-                    Asset.RemoveRange(dbContext.Computers);
+                    Computer.RemoveRange(dbContext.Computers);
 
 
-                    context.SaveChanges();
+                    dbContext.SaveChanges();
                 }
 
                 static void AddSomeTitles()
