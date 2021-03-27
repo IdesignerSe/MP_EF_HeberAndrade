@@ -1,29 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using Bloggy.Demo.Domain;
 
-namespace Bloggy.Demo
+namespace MP_EF_HeberAndrade
 {
     public class App
     {
-        DataAccess _dataAccess = new DataAccess();
-
-        public void Run()
+       //dbContext _dataAccess = new DataAccess();
+       //using (AssetsContext = new AssetsContext())
+        void Run()
         {
             PageMainMenu();
         }
 
-        private void PageMainMenu()
+        void PageMainMenu()
         {
-            Header("Huvudmeny");
+            Header("Menu");
 
             ShowAllBlogPostsBrief();
 
-            WriteLine("Vad vill du göra?");
-            WriteLine("a) Gå till huvudmenyn");
-            WriteLine("b) Skapa en ny bloggpost");
-            WriteLine("c) Uppdatera en bloggpost");
-            WriteLine("d) Ta bort en bloggpost");
+            WriteLine("Press key A,B,C or D Instructions: ");
+            WriteLine("a) Back Menu");
+            WriteLine("b) Create an Item");
+            WriteLine("c) Update and Item");
+            WriteLine("d) Delete and Item");
 
             ConsoleKey command = Console.ReadKey(true).Key;
 
@@ -40,33 +39,81 @@ namespace Bloggy.Demo
                 DeletePost();
         }
 
-        private void CreatePost()
+
+        void ClearDatabase()
+
         {
-            Header("Skapa");
+            Computer.RemoveRange(AssetsContext.Computers);
+
+
+            AssetsContext.SaveChanges();
+        }
+
+        static void AddSomeTitles()
+        {
+
+            var computer1 = new Computer("MacBook", "2018 15 inch ", 20180101, 13000, 20211201, 8000);
+            var computer2 = new Computer("MacBook", "2018 15 inch ", 20180101, 13000, 20211201, 8000);
+
+            using (var context = new AssetsContext())
+            {
+                context.Computers.AddRange(computer1, computer2);
+                context.SaveChanges();
+            }
+        }
+
+        void CreatePost()
+        {
+            Header("Create");
 
             ShowAllBlogPostsBrief();
 
-            Write("Skriv in ny titel: ");
+            Write("Write an Item: ");
 
-            string newTitle = Console.ReadLine();
+            string newBrand = Console.ReadLine();
+            //
 
-            Write("Skriv in ny författare: ");
+            Write("Write model and year: ex. Macbest 2030 ");
 
-            string newAuthor = Console.ReadLine();
+            string newModelName = Console.ReadLine();
+            //
 
-            BlogPost blogpost = new BlogPost();
+            Write("Write the date of purchase! ex. 2021/12/01");
 
-            blogpost.Title = newTitle;
-            blogpost.Author = newAuthor;
+            string newPurchaseDate = Console.ReadLine();
 
-            _dataAccess.CreateBlogpost(blogpost);
+            //
+            Write("Write the inicial cost! ex. 13,000");
 
-            Write("Bloggposten är skapad.");
+            string newInitialCost = Console.ReadLine();
+
+            //
+            Write("Write the Expiration date! # years from now ex.2023/12/01");
+
+            string newExpiredDate = Console.ReadLine();
+
+            //
+
+            Write("Write the Expiration Price! To sale out");
+
+            string newExpiredCost = Console.ReadLine();
+
+
+            Computer computer = new Computer();
+
+            //Computer.Brand = newBrand;
+            //Computer.ModelName = newModelName;
+            //Computer.PurchaseDate = newPurchaseDate;
+            //Computer.InicialCost = newInitialCost;
+            //Computer.ExpiredDate = newExpiredDate;
+            //Computer.ExpiredCost = newExpiredCost;
+
+            Write("Item is now in our list! ");
             Console.ReadKey();
             PageMainMenu();
         }
 
-        private void PageUpdatePost()
+        void PageUpdatePost()
         {
             Header("Uppdatera");
 
@@ -74,73 +121,77 @@ namespace Bloggy.Demo
 
             Write("Vilken bloggpost vill du uppdatera? ");
 
-            int postId = int.Parse(Console.ReadLine());
+            int computerId = int.Parse(Console.ReadLine());
 
-            BlogPost blogpost = _dataAccess.GetPostById(postId);
+            Computer computer = AssetsContext.GetPostById(computerId);
 
-            WriteLine("Den nuvarande titeln är: " + blogpost.Title);
+            //DbContextId ContextId
 
-            Write("Skriv in ny titel: ");
+            WriteLine("The actual Item is: " + computerId);
 
-            string newTitle = Console.ReadLine();
+            Write("Write a new Item: ");
 
-            blogpost.Title = newTitle;
+            string newBrand = Console.ReadLine();
 
-            _dataAccess.UpdateBlogpost(blogpost);
+            Computer.Brand = newBrand;
+            //save
+
+
+            AssetsContext.UpdateBlogpost(computer);
 
             Write("Bloggposten uppdaterad.");
             Console.ReadKey();
             PageMainMenu();
         }
 
-        private void DeletePost()
+        void DeletePost()
         {
-            Header("Ta bort");
+            Header("DELETE");
 
             ShowAllBlogPostsBrief();
 
-            Write("Vilken bloggpost vill du ta bort? ");
+            Write("Wich Item to DELETE? ");
 
-            int postId = int.Parse(Console.ReadLine());
+            int computerId = int.Parse(Console.ReadLine());
 
-            BlogPost blogpost = _dataAccess.GetPostById(postId);
+            Computer computer = AssetsContext.GetPostById(computerId);
 
-            _dataAccess.DeleteBlogpost(blogpost);
+            AssetsContext.DeleteBlogpost(computer);
 
-            Write("Bloggposten är borttagen.");
+            Write("Computer Item is  DELETED.");
             Console.ReadKey();
             PageMainMenu();
         }
 
-        private void ShowAllBlogPostsBrief()
+        void ShowAllBlogPostsBrief()
         {
-            List<BlogPost> list = _dataAccess.GetAllBlogPostsBrief();
+            List<Computer> list = AssetsContext.GetAllBlogPostsBrief();
 
-            foreach (BlogPost bp in list)
+            foreach (Computer bp in list)
             {
-                WriteLine(bp.Id.ToString().PadRight(5) + bp.Title.PadRight(30) + bp.Author.PadRight(20));
+                WriteLine(bp.Id.ToString().PadRight(5) + bp.Brand.PadRight(30) + bp.ModelName.PadRight(20) + bp.PurchaseDate.ToString().PadRight(5) + bp.InicialCost.ToString().PadRight(5) + bp.ExpiredDate.ToString().PadRight(5) + bp.ExpiredCost.ToString().PadRight(5));
             }
             WriteLine();
         }
 
-        private void Header(string text)
+        void Header(string text)
         {
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine();
             Console.WriteLine(text.ToUpper());
             Console.WriteLine();
         }
 
-        private void WriteLine(string text = "")
+        void WriteLine(string text = "")
         {
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(text);
         }
 
-        private void Write(string text)
+        void Write(string text)
         {
-            Console.ForegroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write(text);
         }
     }

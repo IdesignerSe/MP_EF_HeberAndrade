@@ -3,6 +3,10 @@
 {
     public class Computer : Asset
     {
+        public Computer()
+        {
+        }
+
         public Computer(string brand, string modelName, int purchaseDate, int inicialCost, int expiredDate, int expiredCost)
         {
             Brand = brand;
