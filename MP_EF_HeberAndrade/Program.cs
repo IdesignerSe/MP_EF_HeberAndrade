@@ -11,6 +11,7 @@ namespace MP_EF_HeberAndrade
         static void Main(string[] args)
         {
             var dbContext = new AssetsContext();
+
             using ( dbContext = new AssetsContext())
             {
                 Computer computerItem = new Computer("MacBook", "2018 15 inch ", 20180101, 13000, 20211201, 8000);
@@ -96,6 +97,29 @@ namespace MP_EF_HeberAndrade
                         DeletePost();
                 }
 
+
+                void ClearDatabase()
+
+                {
+                    Asset.RemoveRange(dbContext.Computers);
+
+
+                    context.SaveChanges();
+                }
+
+                static void AddSomeTitles()
+                {
+
+                    var computer1 = new Computer("MacBook", "2018 15 inch ", 20180101, 13000, 20211201, 8000);
+                    var computer2 = new Computer("MacBook", "2018 15 inch ", 20180101, 13000, 20211201, 8000);
+
+                    using (var context = new AssetsContext())
+                    {
+                        context.Computers.AddRange(computer1, computer2);
+                        context.SaveChanges();
+                    }
+                }
+
                 void CreatePost()
                 {
                     Header("Create");
@@ -133,16 +157,14 @@ namespace MP_EF_HeberAndrade
                     string newExpiredCost = Console.ReadLine();
 
 
-                    //Computer computer = new Computer();
+                    Computer computer = new Computer();
 
-                    //Asset.Brand = newBrand;
-                    //Asset.ModelName = newModelName;
-                    //Asset.PurchaseDate = newPurchaseDate;
-                    //Asset.InicialCost = newInitialCost;
-                    //Asset.ExpiredDate = newExpiredDate;
-                    //Asset.ExpiredCost = newExpiredCost;
-
-                   // dbContext.CreateBlogpost(computer);
+                    //Computer.Brand = newBrand;
+                    //Computer.ModelName = newModelName;
+                    //Computer.PurchaseDate = newPurchaseDate;
+                    //Computer.InicialCost = newInitialCost;
+                    //Computer.ExpiredDate = newExpiredDate;
+                    //Computer.ExpiredCost = newExpiredCost;
 
                     Write("Item is now in our list! ");
                     Console.ReadKey();
@@ -163,11 +185,11 @@ namespace MP_EF_HeberAndrade
 
                     //DbContextId ContextId
 
-                    WriteLine("Den nuvarande titeln är: " + Computer.Brand);
+                    WriteLine("The actual Item is: " + computerId);
 
-                    Write("Skriv in ny titel: ");
+                    Write("Write a new Item: ");
 
-                    string newTitle = Console.ReadLine();
+                    string newBrand = Console.ReadLine();
 
                     Computer.Brand = newBrand;
 
