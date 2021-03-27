@@ -21,10 +21,11 @@ namespace MP_EF_HeberAndrade
             );
         }
 
+        private const string conString = @"Server=S5D011\SQLEXPRESS; Database=AssetsCatalog";
         public List<Computer> GetAllBlogPostsBrief()
         {
-            var sql = @"SELECT [Id], [Author], [Title]
-                        FROM BlogPost";
+            var sql = @"SELECT [Id], [Brand], [ModelName], [PurchaseDate], [InicialCost], [ExpiredDate], [ExpiredCost]
+                        FROM Computer";
 
             using (SqlConnection connection = new SqlConnection(conString))
             using (SqlCommand command = new SqlCommand(sql, connection))
@@ -37,11 +38,17 @@ namespace MP_EF_HeberAndrade
 
                 while (reader.Read())
                 {
-                    var bp = new BlogPost
+                    var bp = new Computer
                     {
                         Id = reader.GetSqlInt32(0).Value,
-                        Author = reader.GetSqlString(1).Value,
-                        Title = reader.GetSqlString(2).Value
+                        Brand = reader.GetSqlString(1).Value,
+                        ModelName = reader.GetSqlString(2).Value,
+                        PurchaseDate = reader.GetSqlInt32(3).Value,
+                        InicialCost = reader.GetSqlInt32(4).Value,
+                        ExpiredDate = reader.GetSqlInt32(5).Value,
+                        ExpiredCost = reader.GetSqlInt32(6).Value,
+
+
                     };
                     list.Add(bp);
                 }
