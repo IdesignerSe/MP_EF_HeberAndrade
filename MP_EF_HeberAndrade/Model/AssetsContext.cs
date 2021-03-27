@@ -56,7 +56,7 @@ namespace MP_EF_HeberAndrade
                 return list;
             }
         }
-        public Computer GetPostById(int postId)
+        public Computer GetPostById(int computerId)
         {
             var sql = @"SELECT [Id], [Brand], [ModelName], [PurchaseDate], [InicialCost], [ExpiredDate], [ExpiredCost]
                         FROM Computer";
@@ -65,7 +65,7 @@ namespace MP_EF_HeberAndrade
             using (SqlCommand command = new SqlCommand(sql, connection))
             {
                 connection.Open();
-                command.Parameters.Add(new SqlParameter("Id", postId));
+                command.Parameters.Add(new SqlParameter("Id", computerId));
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -94,14 +94,18 @@ namespace MP_EF_HeberAndrade
         {
             //INSERT INTO Computer(Brand,ModelName) VALUES('Good post','Mats Lind')
             //INSERT INTO BlogPost(Title,Author) VALUES('Good post','Mats Lind')
-            var sql = "INSERT INTO Computer(Brand,ModelName) VALUES(@Brand,@ModelName)";
+            var sql = "INSERT INTO Computer(Brand,ModelName) VALUES(@Brand,@ModelName, @PurchaseDate, @InicialCost, @ExpiredDate, @ExpiredCost)";
 
             using (SqlConnection connection = new SqlConnection(conString))
             using (SqlCommand command = new SqlCommand(sql, connection))
             {
-                connection.Open();
+                command.Parameters.Add(new SqlParameter("Id", computer.Id));
                 command.Parameters.Add(new SqlParameter("Brand", computer.Brand));
-                command.Parameters.Add(new SqlParameter("Title", computer.ModelName));
+                command.Parameters.Add(new SqlParameter("ModelName", computer.ModelName));
+                command.Parameters.Add(new SqlParameter("PurchaseDate", computer.ModelName));
+                command.Parameters.Add(new SqlParameter("InicialCost", computer.ModelName));
+                command.Parameters.Add(new SqlParameter("ExpiredDate", computer.ModelName));
+                command.Parameters.Add(new SqlParameter("ExpiredCost", computer.ModelName));
                 command.ExecuteNonQuery();
             }
         }
@@ -114,8 +118,13 @@ namespace MP_EF_HeberAndrade
             using (SqlCommand command = new SqlCommand(sql, connection))
             {
                 connection.Open();
-                command.Parameters.Add(new SqlParameter("Id", blogPost.Id));
-                command.Parameters.Add(new SqlParameter("Title", blogPost.Title));
+                command.Parameters.Add(new SqlParameter("Id", computer.Id));
+                command.Parameters.Add(new SqlParameter("Brand", computer.Brand));
+                command.Parameters.Add(new SqlParameter("ModelName", computer.ModelName));
+                command.Parameters.Add(new SqlParameter("PurchaseDate", computer.ModelName));
+                command.Parameters.Add(new SqlParameter("InicialCost", computer.ModelName));
+                command.Parameters.Add(new SqlParameter("ExpiredDate", computer.ModelName));
+                command.Parameters.Add(new SqlParameter("ExpiredCost", computer.ModelName));
                 command.ExecuteNonQuery();
             }
         }
