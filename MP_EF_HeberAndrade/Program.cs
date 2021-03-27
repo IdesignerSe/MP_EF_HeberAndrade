@@ -192,6 +192,7 @@ namespace MP_EF_HeberAndrade
                     string newBrand = Console.ReadLine();
 
                     Computer.Brand = newBrand;
+                    //save
 
 
                     dbContext.UpdateBlogpost(computer);
