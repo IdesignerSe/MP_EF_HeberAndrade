@@ -1,4 +1,5 @@
 ﻿USE master
+
 CREATE DATABASE AssetsCatalog
 
 GO

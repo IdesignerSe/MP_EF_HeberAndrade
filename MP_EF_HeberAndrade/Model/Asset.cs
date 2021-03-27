@@ -9,4 +9,5 @@
         public int ExpiredDate { get; set; }
         public int ExpiredCost { get; set; }
     }
+
 }
