@@ -11,7 +11,7 @@ namespace MP_EF_HeberAndrade
         public DbSet<Computer> Computers { get; set; }
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Tv> Tvs { get; set; }
-        public static object[] Computer { get; internal set; }
+ 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
