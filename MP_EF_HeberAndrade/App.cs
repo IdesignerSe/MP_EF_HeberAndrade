@@ -78,7 +78,7 @@ namespace MP_EF_HeberAndrade
             string newExpiredCost = Console.ReadLine();
 
 
-            Asset computer = new Asset();
+            Asset asset = new Asset();
 
             Asset.Brand = newBrand;
             Asset.ModelName = newModelName;
@@ -113,7 +113,7 @@ namespace MP_EF_HeberAndrade
 
             Asset.Brand = newBrand;
 
-            AssetsContext.UpdateBlogpost(computer);
+            AssetsContext.UpdateBlogpost(Asset);
 
             Write("Bloggposten uppdaterad.");
             Console.ReadKey();
@@ -127,11 +127,11 @@ namespace MP_EF_HeberAndrade
 
             Write("Wich Item to DELETE? ");
 
-            int computerId = int.Parse(Console.ReadLine());
+            int assetId = int.Parse(Console.ReadLine());
 
-            Computer computer = AssetsContext.GetPostById(computerId);
+            Asset asset = AssetsContext.GetPostById(assetId);
 
-            AssetsContext.DeleteBlogpost(computer);
+            AssetsContext.DeleteBlogpost(asset);
 
             Write("Computer Item is  DELETED.");
             Console.ReadKey();
