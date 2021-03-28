@@ -31,10 +31,10 @@ namespace MP_EF_HeberAndrade
                         Id = reader.GetSqlInt32(0).Value,
                         Brand = reader.GetSqlString(1).Value,
                         ModelName = reader.GetSqlString(2).Value,
-                        PurchaseDate = reader.GetSqlInt32(3).Value,
-                        InicialCost = reader.GetSqlInt32(4).Value,
-                        ExpiredDate = reader.GetSqlInt32(5).Value,
-                        ExpiredCost = reader.GetSqlInt32(6).Value,
+                        PurchaseDate = reader.GetSqlString(3).Value,
+                        InicialCost = reader.GetSqlString(4).Value,
+                        ExpiredDate = reader.GetSqlString(5).Value,
+                        ExpiredCost = reader.GetSqlString(6).Value,
                     };
                     list.Add((Asset)bp);
                 }
@@ -62,10 +62,10 @@ namespace MP_EF_HeberAndrade
                         Id = reader.GetSqlInt32(0).Value,
                         Brand = reader.GetSqlString(1).Value,
                         ModelName = reader.GetSqlString(2).Value,
-                        PurchaseDate = reader.GetSqlInt32(3).Value,
-                        InicialCost = reader.GetSqlInt32(4).Value,
-                        ExpiredDate = reader.GetSqlInt32(5).Value,
-                        ExpiredCost = reader.GetSqlInt32(6).Value,
+                        PurchaseDate = reader.GetSqlString(3).Value,
+                        InicialCost = reader.GetSqlString(4).Value,
+                        ExpiredDate = reader.GetSqlString(5).Value,
+                        ExpiredCost = reader.GetSqlString(6).Value,
                     };
                     return (Asset)bp;
                 }
