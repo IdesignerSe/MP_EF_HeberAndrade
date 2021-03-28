@@ -9,13 +9,13 @@ namespace MP_EF_HeberAndrade
     public class App
     {
 
-       //AssetsContext _App = new AssetsContext();
+       AssetsContext _App = new AssetsContext();
        //using AssetsContext = new AssetsContext();
         void Run()
         {
             PageMainMenu();
         }
-        void PageMainMenu()
+        private void PageMainMenu()
         {
             Header("Menu");
 
@@ -41,7 +41,7 @@ namespace MP_EF_HeberAndrade
             if (command == ConsoleKey.D)
                 DeletePost();
         }
-        void CreatePost()
+        private void CreatePost()
         {
             Header("Create");
 
@@ -78,20 +78,20 @@ namespace MP_EF_HeberAndrade
             string newExpiredCost = Console.ReadLine();
 
 
-            Computer computer = new Computer();
+            Asset computer = new Asset();
 
-            Computer.Brand = newBrand;
-            Computer.ModelName = newModelName;
-            Computer.PurchaseDate = newPurchaseDate;
-            Computer.InicialCost = newInitialCost;
-            Computer.ExpiredDate = newExpiredDate;
-            Computer.ExpiredCost = newExpiredCost;
+            Asset.Brand = newBrand;
+            Asset.ModelName = newModelName;
+            Asset.PurchaseDate = newPurchaseDate;
+            Asset.InicialCost = newInitialCost;
+            Asset.ExpiredDate = newExpiredDate;
+            Asset.ExpiredCost = newExpiredCost;
 
             Write("Item is now in our list! ");
             Console.ReadKey();
             PageMainMenu();
         }
-        void PageUpdatePost()
+        private void PageUpdatePost()
         {
             Header("Uppdatera");
 
@@ -103,7 +103,7 @@ namespace MP_EF_HeberAndrade
 
             Computer computer = AssetsContext.GetPostById(computerId);
 
-            //DbContextId ContextId
+            DbContextId ContextId;
 
             WriteLine("The actual Item is: " + computerId);
 
@@ -111,9 +111,7 @@ namespace MP_EF_HeberAndrade
 
             string newBrand = Console.ReadLine();
 
-            Computer.Brand = newBrand;
-            //save
-
+            Asset.Brand = newBrand;
 
             AssetsContext.UpdateBlogpost(computer);
 
@@ -121,7 +119,7 @@ namespace MP_EF_HeberAndrade
             Console.ReadKey();
             PageMainMenu();
         }
-        void DeletePost()
+        private void DeletePost()
         {
             Header("DELETE");
 
@@ -139,17 +137,17 @@ namespace MP_EF_HeberAndrade
             Console.ReadKey();
             PageMainMenu();
         }
-        void ShowAllBlogPostsBrief()
+        private void ShowAllBlogPostsBrief()
         {
-            List<Computer> list = AssetsContext.GetAllBlogPostsBrief();
+            List<Asset> list = AssetsContext.GetAllBlogPostsBrief();
 
-            foreach (Computer bp in list)
+            foreach (Asset bp in list)
             {
                 WriteLine(bp.Id.ToString().PadRight(5) + bp.Brand.PadRight(30) + bp.ModelName.PadRight(20) + bp.PurchaseDate.ToString().PadRight(5) + bp.InicialCost.ToString().PadRight(5) + bp.ExpiredDate.ToString().PadRight(5) + bp.ExpiredCost.ToString().PadRight(5));
             }
             WriteLine();
         }
-        void Header(string text)
+        private void Header(string text)
         {
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Blue;

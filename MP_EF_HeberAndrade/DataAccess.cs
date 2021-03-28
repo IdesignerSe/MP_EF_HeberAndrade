@@ -26,7 +26,7 @@ namespace MP_EF_HeberAndrade
 
                 while (reader.Read())
                 {
-                    var bp = new Computer
+                    var bp = new Asset
                     {
                         Id = reader.GetSqlInt32(0).Value,
                         Brand = reader.GetSqlString(1).Value,
@@ -36,7 +36,7 @@ namespace MP_EF_HeberAndrade
                         ExpiredDate = reader.GetSqlInt32(5).Value,
                         ExpiredCost = reader.GetSqlInt32(6).Value,
                     };
-                    list.Add(bp);
+                    list.Add((Computer)bp);
                 }
 
                 return list;
@@ -57,7 +57,7 @@ namespace MP_EF_HeberAndrade
 
                 if (reader.Read())
                 {
-                    var bp = new Computer
+                    var bp = new Asset
                     {
                         Id = reader.GetSqlInt32(0).Value,
                         Brand = reader.GetSqlString(1).Value,
@@ -67,7 +67,7 @@ namespace MP_EF_HeberAndrade
                         ExpiredDate = reader.GetSqlInt32(5).Value,
                         ExpiredCost = reader.GetSqlInt32(6).Value,
                     };
-                    return bp;
+                    return (Computer)bp;
 
                 }
 
