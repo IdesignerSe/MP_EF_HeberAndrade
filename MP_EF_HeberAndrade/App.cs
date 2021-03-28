@@ -44,7 +44,7 @@ namespace MP_EF_HeberAndrade
         void ClearDatabase()
 
         {
-            Computer.RemoveRange(AssetsContext.Computers);
+            AssetsContext.RemoveRange(AssetsContext.Computer);
 
 
             AssetsContext.SaveChanges();

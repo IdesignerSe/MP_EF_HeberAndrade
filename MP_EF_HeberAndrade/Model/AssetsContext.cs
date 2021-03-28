@@ -8,10 +8,11 @@ namespace MP_EF_HeberAndrade
 {
     public class AssetsContext : DbContext
     {
-        
         public DbSet<Computer> Computers { get; set; }
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Tv> Tvs { get; set; }
+        public static object[] Computer { get; internal set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
@@ -47,8 +48,6 @@ namespace MP_EF_HeberAndrade
                         InicialCost = reader.GetSqlInt32(4).Value,
                         ExpiredDate = reader.GetSqlInt32(5).Value,
                         ExpiredCost = reader.GetSqlInt32(6).Value,
-
-
                     };
                     list.Add(bp);
                 }
