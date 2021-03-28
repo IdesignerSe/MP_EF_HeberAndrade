@@ -8,6 +8,7 @@ namespace MP_EF_HeberAndrade
 {
     public class AssetsContext : DbContext
     {
+        public static object GetPostById { get; internal set; }
         public DbSet<Computer> Computers { get; set; }
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Tv> Tvs { get; set; }
