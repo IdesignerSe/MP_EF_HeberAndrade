@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using Microsoft.EntityFrameworkCore;
 
 namespace MP_EF_HeberAndrade
 {
@@ -12,7 +15,6 @@ namespace MP_EF_HeberAndrade
         {
             PageMainMenu();
         }
-
         void PageMainMenu()
         {
             Header("Menu");
@@ -39,30 +41,6 @@ namespace MP_EF_HeberAndrade
             if (command == ConsoleKey.D)
                 DeletePost();
         }
-
-
-        void ClearDatabase()
-
-        {
-            AssetsContext.RemoveRange(AssetsContext.Computer);
-
-
-            AssetsContext.SaveChanges();
-        }
-
-        static void AddSomeTitles()
-        {
-
-            var computer1 = new Computer("MacBook", "2018 15 inch ", 20180101, 13000, 20211201, 8000);
-            var computer2 = new Computer("MacBook", "2018 15 inch ", 20180101, 13000, 20211201, 8000);
-
-            using (var context = new AssetsContext())
-            {
-                context.Computers.AddRange(computer1, computer2);
-                context.SaveChanges();
-            }
-        }
-
         void CreatePost()
         {
             Header("Create");
@@ -113,7 +91,6 @@ namespace MP_EF_HeberAndrade
             Console.ReadKey();
             PageMainMenu();
         }
-
         void PageUpdatePost()
         {
             Header("Uppdatera");
@@ -144,7 +121,6 @@ namespace MP_EF_HeberAndrade
             Console.ReadKey();
             PageMainMenu();
         }
-
         void DeletePost()
         {
             Header("DELETE");
@@ -163,7 +139,6 @@ namespace MP_EF_HeberAndrade
             Console.ReadKey();
             PageMainMenu();
         }
-
         void ShowAllBlogPostsBrief()
         {
             List<Computer> list = AssetsContext.GetAllBlogPostsBrief();
@@ -174,7 +149,6 @@ namespace MP_EF_HeberAndrade
             }
             WriteLine();
         }
-
         void Header(string text)
         {
             Console.Clear();
@@ -183,13 +157,11 @@ namespace MP_EF_HeberAndrade
             Console.WriteLine(text.ToUpper());
             Console.WriteLine();
         }
-
         void WriteLine(string text = "")
         {
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(text);
         }
-
         void Write(string text)
         {
             Console.ForegroundColor = ConsoleColor.Blue;

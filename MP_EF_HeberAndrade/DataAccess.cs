@@ -1,7 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
+﻿using System;
+using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
-//using MP_EF_HeberAndrade.AssetsContext;
 
 namespace MP_EF_HeberAndrade
 
