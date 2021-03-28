@@ -8,19 +8,11 @@ namespace MP_EF_HeberAndrade
 {
 public class App
     {
-       //DbContextId ContextId;
+       DbContextId ContextId;
         //using (var contex = new AssetsContext())
         //{
         //}
         //
-        class AssetsContext
-        {
-            public static object GetPostById(int computerId)
-            {
-            }
-        }
-
-
         private void Run()
         {
             PageMainMenu();
