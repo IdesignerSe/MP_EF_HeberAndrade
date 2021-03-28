@@ -99,13 +99,13 @@ namespace MP_EF_HeberAndrade
 
             Write("Vilken bloggpost vill du uppdatera? ");
 
-            int computerId = int.Parse(Console.ReadLine());
+            int assetId = int.Parse(Console.ReadLine());
 
-            Computer computer = AssetsContext.GetPostById(computerId);
+            Asset asset = AssetsContext.GetPostById(assetId);
 
-            DbContextId ContextId;
+  //          DbContextId ContextId;
 
-            WriteLine("The actual Item is: " + computerId);
+            WriteLine("The actual Item is: " + assetId);
 
             Write("Write a new Item: ");
 
@@ -133,7 +133,7 @@ namespace MP_EF_HeberAndrade
 
             AssetsContext.DeleteBlogpost(asset);
 
-            Write("Computer Item is  DELETED.");
+            Write("Asset Item is  DELETED.");
             Console.ReadKey();
             PageMainMenu();
         }
