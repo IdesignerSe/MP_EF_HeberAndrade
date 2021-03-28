@@ -6,12 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MP_EF_HeberAndrade
 {
-    public class App
+public class App
     {
-
-       AssetsContext _App = new AssetsContext();
-       //using AssetsContext = new AssetsContext();
-        void Run()
+        DbContextId ContextId;
+        private void Run()
         {
             PageMainMenu();
         }
@@ -101,9 +99,7 @@ namespace MP_EF_HeberAndrade
 
             int assetId = int.Parse(Console.ReadLine());
 
-            Asset asset = AssetsContext.GetPostById(assetId);
-
-  //          DbContextId ContextId;
+            Asset asset = AssetsContext.GetPostById.Find (assetId);
 
             WriteLine("The actual Item is: " + assetId);
 
@@ -165,5 +161,6 @@ namespace MP_EF_HeberAndrade
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.Write(text);
         }
+
     }
 }

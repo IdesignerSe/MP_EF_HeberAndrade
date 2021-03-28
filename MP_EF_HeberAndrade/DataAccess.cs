@@ -10,10 +10,10 @@ namespace MP_EF_HeberAndrade
     {
         private const string conString = @"Server=S5D011\SQLEXPRESS; Database=AccessCatalog";
 
-        public List<Computer> GetAllBlogPostsBrief()
+        public List<Asset> GetAllBlogPostsBrief()
         {
             var sql = @"SELECT [Id], [Brand], [ModelName], [PurchaseDate], [InicialCost], [ExpiredDate], [ExpiredCost]
-                        FROM Computer";
+                        FROM Asset";
 
             using (SqlConnection connection = new SqlConnection(conString))
             using (SqlCommand command = new SqlCommand(sql, connection))
@@ -22,7 +22,7 @@ namespace MP_EF_HeberAndrade
 
                 SqlDataReader reader = command.ExecuteReader();
 
-                var list = new List<Computer>();
+                var list = new List<Asset>();
 
                 while (reader.Read())
                 {
@@ -36,22 +36,22 @@ namespace MP_EF_HeberAndrade
                         ExpiredDate = reader.GetSqlInt32(5).Value,
                         ExpiredCost = reader.GetSqlInt32(6).Value,
                     };
-                    list.Add((Computer)bp);
+                    list.Add((Asset)bp);
                 }
 
                 return list;
             }
         }
-        public Computer GetPostById(int computerId)
+        public Asset GetPostById(int assetId)
         {
             var sql = @"SELECT [Id], [Brand], [ModelName], [PurchaseDate], [InicialCost], [ExpiredDate], [ExpiredCost]
-                        FROM Computer";
+                        FROM Asset";
 
             using (SqlConnection connection = new SqlConnection(conString))
             using (SqlCommand command = new SqlCommand(sql, connection))
             {
                 connection.Open();
-                command.Parameters.Add(new SqlParameter("Id", computerId));
+                command.Parameters.Add(new SqlParameter("Id", assetId));
 
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -67,8 +67,7 @@ namespace MP_EF_HeberAndrade
                         ExpiredDate = reader.GetSqlInt32(5).Value,
                         ExpiredCost = reader.GetSqlInt32(6).Value,
                     };
-                    return (Computer)bp;
-
+                    return (Asset)bp;
                 }
 
                 return null;
@@ -76,55 +75,55 @@ namespace MP_EF_HeberAndrade
             }
         }
 
-        void CreateBlogpost(Computer computer)
+        void CreateBlogpost(Asset asset)
         {
             //INSERT INTO Computer(Brand,ModelName) VALUES('Good post','Mats Lind')
             //INSERT INTO BlogPost(Title,Author) VALUES('Good post','Mats Lind')
-            var sql = "INSERT INTO Computer(Brand,ModelName) VALUES(@Brand,@ModelName, @PurchaseDate, @InicialCost, @ExpiredDate, @ExpiredCost)";
+            var sql = "INSERT INTO Asset(Brand,ModelName, PurchaseDate, InicialCost, ExpiredCost, ExpiredCost) VALUES(@Brand,@ModelName, @PurchaseDate, @InicialCost, @ExpiredDate, @ExpiredCost)";
 
             using (SqlConnection connection = new SqlConnection(conString))
             using (SqlCommand command = new SqlCommand(sql, connection))
             {
-                command.Parameters.Add(new SqlParameter("Id", computer.Id));
-                command.Parameters.Add(new SqlParameter("Brand", computer.Brand));
-                command.Parameters.Add(new SqlParameter("ModelName", computer.ModelName));
-                command.Parameters.Add(new SqlParameter("PurchaseDate", computer.PurchaseDate));
-                command.Parameters.Add(new SqlParameter("InicialCost", computer.InicialCost));
-                command.Parameters.Add(new SqlParameter("ExpiredDate", computer.ExpiredDate));
-                command.Parameters.Add(new SqlParameter("ExpiredCost", computer.ExpiredCost));
+                command.Parameters.Add(new SqlParameter("Id", asset.Id));
+                command.Parameters.Add(new SqlParameter("Brand", asset.Brand));
+                command.Parameters.Add(new SqlParameter("ModelName", asset.ModelName));
+                command.Parameters.Add(new SqlParameter("PurchaseDate", asset.PurchaseDate));
+                command.Parameters.Add(new SqlParameter("InicialCost", asset.InicialCost));
+                command.Parameters.Add(new SqlParameter("ExpiredDate", asset.ExpiredDate));
+                command.Parameters.Add(new SqlParameter("ExpiredCost", asset.ExpiredCost));
                 command.ExecuteNonQuery();
             }
         }
 
-        void UpdateBlogpost(Computer computer)
+        void UpdateBlogpost(Asset asset)
         {
-            var sql = "UPDATE Computer SET Brand=@Brand WHERE id=@Id";
+            var sql = "UPDATE Asset SET Brand=@Brand WHERE id=@Id";
 
             using (SqlConnection connection = new SqlConnection(conString))
             using (SqlCommand command = new SqlCommand(sql, connection))
             {
                 connection.Open();
-                command.Parameters.Add(new SqlParameter("Id", computer.Id));
-                command.Parameters.Add(new SqlParameter("Brand", computer.Brand));
-                command.Parameters.Add(new SqlParameter("ModelName", computer.ModelName));
-                command.Parameters.Add(new SqlParameter("PurchaseDate", computer.ModelName));
-                command.Parameters.Add(new SqlParameter("InicialCost", computer.ModelName));
-                command.Parameters.Add(new SqlParameter("ExpiredDate", computer.ModelName));
-                command.Parameters.Add(new SqlParameter("ExpiredCost", computer.ModelName));
+                command.Parameters.Add(new SqlParameter("Id", asset.Id));
+                command.Parameters.Add(new SqlParameter("Brand", asset.Brand));
+                command.Parameters.Add(new SqlParameter("ModelName", asset.ModelName));
+                command.Parameters.Add(new SqlParameter("PurchaseDate", asset.ModelName));
+                command.Parameters.Add(new SqlParameter("InicialCost", asset.ModelName));
+                command.Parameters.Add(new SqlParameter("ExpiredDate", asset.ModelName));
+                command.Parameters.Add(new SqlParameter("ExpiredCost", asset.ModelName));
                 command.ExecuteNonQuery();
             }
         }
 
-        public void DeleteBlogpost(Computer computer)
+        public void DeleteBlogpost(Asset asset)
         {
             //DELETE FROM BlogPost WHERE Id=3
-            var sql = "DELETE FROM Computer WHERE id=@Id";
+            var sql = "DELETE FROM Asset WHERE id=@Id";
 
             using (SqlConnection connection = new SqlConnection(conString))
             using (SqlCommand command = new SqlCommand(sql, connection))
             {
                 connection.Open();
-                command.Parameters.Add(new SqlParameter("Id", computer.Id));
+                command.Parameters.Add(new SqlParameter("Id", asset.Id));
                 command.ExecuteNonQuery();
             }
         }

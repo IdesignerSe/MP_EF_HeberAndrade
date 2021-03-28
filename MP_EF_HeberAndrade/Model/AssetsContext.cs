@@ -12,7 +12,6 @@ namespace MP_EF_HeberAndrade
         public DbSet<Phone> Phones { get; set; }
         public DbSet<Tv> Tvs { get; set; }
  
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(
@@ -21,6 +20,7 @@ namespace MP_EF_HeberAndrade
                 " TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False"
             );
         }
+
     }
    
 }
