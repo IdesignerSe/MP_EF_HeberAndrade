@@ -12,6 +12,7 @@ namespace MP_EF_HeberAndrade
         {
             var dbContext = new AssetsContext();
 
+
             using ( dbContext = new AssetsContext())
             {
                 Computer computerItem = new Computer("MacBook", "2018 15 inch ", 20180101, 13000, 20211201, 8000);

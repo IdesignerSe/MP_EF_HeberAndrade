@@ -6,8 +6,8 @@ namespace MP_EF_HeberAndrade
     public class App
     {
 
-        AssetsContext _dataAccess = new AssetsContext();
-       //using (AssetsContext = new AssetsContext())
+       //AssetsContext _App = new AssetsContext();
+       //using AssetsContext = new AssetsContext();
         void Run()
         {
             PageMainMenu();
