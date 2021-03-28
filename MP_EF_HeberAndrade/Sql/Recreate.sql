@@ -12,10 +12,10 @@ CREATE TABLE [dbo].[Computers] (
     [Id]           INT            IDENTITY (1, 1) NOT NULL,
     [Brand]        NVARCHAR (MAX) NULL,
     [ModelName]    NVARCHAR (MAX) NULL,
-    [PurchaseDate] INT            NOT NULL,
-    [InicialCost]  INT            NOT NULL,
-    [ExpiredDate]  INT            NOT NULL,
-    [ExpiredCost]  INT            NOT NULL,
+    [PurchaseDate] NVARCHAR (MAX) NULL,
+    [InicialCost]  NVARCHAR (MAX) NULL,
+    [ExpiredDate]  NVARCHAR (MAX) NULL,
+    [ExpiredCost]  NVARCHAR (MAX) NULL,
     CONSTRAINT [PK_Computers] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
@@ -25,10 +25,10 @@ CREATE TABLE [dbo].[Phones] (
     [Id]           INT            IDENTITY (1, 1) NOT NULL,
     [Brand]        NVARCHAR (MAX) NULL,
     [ModelName]    NVARCHAR (MAX) NULL,
-    [PurchaseDate] INT            NOT NULL,
-    [InicialCost]  INT            NOT NULL,
-    [ExpiredDate]  INT            NOT NULL,
-    [ExpiredCost]  INT            NOT NULL,
+    [PurchaseDate] NVARCHAR (MAX) NULL,
+    [InicialCost]  NVARCHAR (MAX) NULL,
+    [ExpiredDate]  NVARCHAR (MAX) NULL,
+    [ExpiredCost]  NVARCHAR (MAX) NULL,
     CONSTRAINT [PK_Phones] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
@@ -38,10 +38,10 @@ CREATE TABLE [dbo].[Tvs] (
     [Id]           INT            IDENTITY (1, 1) NOT NULL,
     [Brand]        NVARCHAR (MAX) NULL,
     [ModelName]    NVARCHAR (MAX) NULL,
-    [PurchaseDate] INT            NOT NULL,
-    [InicialCost]  INT            NOT NULL,
-    [ExpiredDate]  INT            NOT NULL,
-    [ExpiredCost]  INT            NOT NULL,
+    [PurchaseDate] NVARCHAR (MAX) NULL,
+    [InicialCost]  NVARCHAR (MAX) NULL,
+    [ExpiredDate]  NVARCHAR (MAX) NULL,
+    [ExpiredCost]  NVARCHAR (MAX) NULL,
     CONSTRAINT [PK_Tvs] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 

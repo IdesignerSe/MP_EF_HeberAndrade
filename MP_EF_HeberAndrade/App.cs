@@ -6,16 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MP_EF_HeberAndrade
 {
-public class App
+    public class App
     {
-       DbContextId ContextId;
-        //using (var contex = new AssetsContext())
-        //{
-        //}
-        //
-        private void Run()
+        private AssetsContext context;
+        private readonly IEnumerable<Asset> list;
+
+        public static void Run()
         {
-            PageMainMenu();
+            new App().PageMainMenu();
         }
 
         private void PageMainMenu()
@@ -81,15 +79,20 @@ public class App
             string newExpiredCost = Console.ReadLine();
 
 
-            Asset asset = new Asset();
+            var asset = new Asset();
 
-            Asset.Brand = newBrand;
-            Asset.ModelName = newModelName;
-            Asset.PurchaseDate = newPurchaseDate;
-            Asset.InicialCost = newInitialCost;
-            Asset.ExpiredDate = newExpiredDate;
-            Asset.ExpiredCost = newExpiredCost;
+            asset.Brand = newBrand;
+            asset.ModelName = newModelName;
+            asset.PurchaseDate = newPurchaseDate;
+            asset.InicialCost = newInitialCost;
+            asset.ExpiredDate = newExpiredDate;
+            asset.ExpiredCost = newExpiredCost;
 
+            using (context = new AssetsContext())
+            {
+                context.Computers.Add((Computer)asset);
+                context.SaveChanges();
+            }
             Write("Item is now in our list! ");
             Console.ReadKey();
             PageMainMenu();
@@ -100,22 +103,24 @@ public class App
 
             ShowAllBlogPostsBrief();
 
-            Write("Vilken bloggpost vill du uppdatera? ");
+            Write("Any Item to update? ");
 
             int assetId = int.Parse(Console.ReadLine());
 
-            Assets.Computers.Find(assetId)
-            Asset asset = AssetsContext.GetPostById.Find (assetId);
+            using (context = new AssetsContext())
+            {
+                var asset = context.Computers.Find(assetId);
 
-            WriteLine("The actual Item is: " + assetId);
+                WriteLine("The actual Item is: " + assetId);
 
-            Write("Write a new Item: ");
+                Write("Write a new Item: ");
 
-            string newBrand = Console.ReadLine();
+                string newBrand = Console.ReadLine();
 
-            Asset.Brand = newBrand;
+                asset.Brand = newBrand;
 
-            AssetsContext.UpdateBlogpost(Asset);
+                context.SaveChanges();
+            }
 
             Write("Bloggposten uppdaterad.");
             Console.ReadKey();
@@ -130,10 +135,13 @@ public class App
             Write("Wich Item to DELETE? ");
 
             int assetId = int.Parse(Console.ReadLine());
+            using (context = new AssetsContext())
+            {
+                var asset = context.Computers.Find(assetId);
 
-            Asset asset = (Asset)AssetsContext.GetPostById(assetId);
-
-            AssetsContext.DeleteBlogpost(asset);
+                context.Remove(asset);
+                context.SaveChanges();
+            }
 
             Write("Asset Item is  DELETED.");
             Console.ReadKey();
@@ -141,11 +149,17 @@ public class App
         }
         private void ShowAllBlogPostsBrief()
         {
-            List<Asset> list = AssetsContext.GetAllBlogPostsBrief();
-
+            using (context = new AssetsContext())
+            {
+                var list = context.Computers.ToList();
+            }
             foreach (Asset bp in list)
             {
-                WriteLine(bp.Id.ToString().PadRight(5) + bp.Brand.PadRight(30) + bp.ModelName.PadRight(20) + bp.PurchaseDate.ToString().PadRight(5) + bp.InicialCost.ToString().PadRight(5) + bp.ExpiredDate.ToString().PadRight(5) + bp.ExpiredCost.ToString().PadRight(5));
+                WriteLine(bp.Id.ToString().PadRight(5) + bp.Brand.PadRight(30) +
+                    bp.ModelName.PadRight(20) + bp.PurchaseDate.ToString().PadRight(5) +
+                    bp.InicialCost.ToString().PadRight(5) + bp.ExpiredDate.ToString().PadRight(5) +
+                    bp.ExpiredCost.ToString().PadRight(5)
+                );
             }
             WriteLine();
         }
