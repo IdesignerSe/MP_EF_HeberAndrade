@@ -8,11 +8,24 @@ namespace MP_EF_HeberAndrade
 {
 public class App
     {
-        DbContextId ContextId;
+       //DbContextId ContextId;
+        //using (var contex = new AssetsContext())
+        //{
+        //}
+        //
+        class AssetsContext
+        {
+            public static object GetPostById(int computerId)
+            {
+            }
+        }
+
+
         private void Run()
         {
             PageMainMenu();
         }
+
         private void PageMainMenu()
         {
             Header("Menu");
@@ -99,6 +112,7 @@ public class App
 
             int assetId = int.Parse(Console.ReadLine());
 
+            Assets.Computers.Find(assetId)
             Asset asset = AssetsContext.GetPostById.Find (assetId);
 
             WriteLine("The actual Item is: " + assetId);
@@ -125,7 +139,7 @@ public class App
 
             int assetId = int.Parse(Console.ReadLine());
 
-            Asset asset = AssetsContext.GetPostById(assetId);
+            Asset asset = (Asset)AssetsContext.GetPostById(assetId);
 
             AssetsContext.DeleteBlogpost(asset);
 
