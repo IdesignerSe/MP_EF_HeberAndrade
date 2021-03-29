@@ -15,7 +15,6 @@ namespace MP_EF_HeberAndrade
         
 
         public const string conString = @"Server=S5D011\SQLEXPRESS; Database=Assetscatalog";
-        private SqlDbType itemId;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -7,7 +7,6 @@ namespace MP_EF_HeberAndrade
 {
     class Program
     {
-        private static readonly IEnumerable<Asset> list;
 
         static void Main(string[] args)
         {
