@@ -15,6 +15,8 @@ namespace MP_EF_HeberAndrade
         
 
         public const string conString = @"Server=S5D011\SQLEXPRESS; Database=Assetscatalog";
+        
+        private readonly SqlDbType itemId;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -90,6 +92,53 @@ namespace MP_EF_HeberAndrade
 
             }
         }
+
+        public void CreateBlogpost(Computer computer)
+        {
+            //INSERT INTO BlogPost(Title,Author) VALUES('Good post','Mats Lind')
+            var sql = "INSERT INTO Computer(Brand,ModelName) VALUES(@Brand,@ModelName)";
+
+            using (SqlConnection connection = new SqlConnection(conString))
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+                connection.Open();
+                command.Parameters.Add(new SqlParameter("Author", computer.Brand));
+                command.Parameters.Add(new SqlParameter("Title", computer.ModelName));
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void UpdateBlogpost(Computer blogPost)
+        {
+            var sql = "UPDATE Computer SET Brand=@Brand WHERE id=@Id";
+
+            using (SqlConnection connection = new SqlConnection(conString))
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+                connection.Open();
+                command.Parameters.Add(new SqlParameter("Id", blogPost.Id));
+                command.Parameters.Add(new SqlParameter("Title", blogPost.Brand));
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public void DeleteBlogpost(Computer computer)
+        {
+            //DELETE FROM BlogPost WHERE Id=3
+            var sql = "DELETE FROM BlogPost WHERE id=@Id";
+
+            using (SqlConnection connection = new SqlConnection(conString))
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+                connection.Open();
+                command.Parameters.Add(new SqlParameter("Id", computer.Id));
+                command.ExecuteNonQuery();
+            }
+        }
+
+
+
+
 
     }
 }

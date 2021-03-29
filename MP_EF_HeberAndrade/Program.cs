@@ -7,10 +7,11 @@ namespace MP_EF_HeberAndrade
 {
     class Program
     {
+        AssetsContext context;
 
         static void Main(string[] args)
         {
-            
+
             using (var dbContext = new AssetsContext())
             {
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
@@ -22,7 +23,6 @@ namespace MP_EF_HeberAndrade
                 Console.WriteLine($"            ASSETS  INVENTORY        \n");
                 Console.WriteLine($">.............................................................<\n");
                 Console.ResetColor();
-
 
                 //(string brand, string modelName, int purchaseDate, int inicialCost, int expiredDate, int expiredCost)
                 // new Asset("MacBook", "Pro 2018 15 inch ", 20180101, 13000, 20211201, 8000),
@@ -53,7 +53,7 @@ namespace MP_EF_HeberAndrade
                 Console.WriteLine(string.Join("                     Is a Computer Brand.\n", brand));
                 Console.WriteLine(string.Join("           Is Computer Model Name\n", modelName));
                 Console.WriteLine(string.Join("                    Is a Computer purchase Date\n", purchaseDate));
-
+                
                 Console.ForegroundColor = ConsoleColor.DarkBlue;
                 Console.WriteLine($">.............................................................<\n");
                 Console.ResetColor();
@@ -169,6 +169,8 @@ namespace MP_EF_HeberAndrade
                     Console.WriteLine(text.ToUpper());
                     Console.WriteLine();
                 }
+
+
                 //             Console.WriteLine("Hello World!");
                 //           using (var dbContext = new CustomTreatmentContext())
                 //         {
@@ -191,7 +193,6 @@ namespace MP_EF_HeberAndrade
                 //                   Console.WriteLine(string.Join(", ", result));
                 //                 Console.WriteLine(string.Join(", ", resultSum));
                 //           }
-
 
 
             }
