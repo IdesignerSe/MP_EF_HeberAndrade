@@ -62,9 +62,9 @@ namespace MP_EF_HeberAndrade
 
         static void CreateItem()
         {
-            Header("Create");
+            Header("CREATE");
 
-            Write("Write an Item: ");
+            Write("Create an Item: \n ex. MacBook");
 
             string newBrand = Console.ReadLine();
 
@@ -80,7 +80,7 @@ namespace MP_EF_HeberAndrade
 
             int.TryParse(Console.ReadLine(), out var newInitialCost);
 
-            Write("Write the Expiration date! # years from now ex.2023/12/01");
+            Write("Write the Expiration date! 3 years from now ex.2023/12/01");
 
             var newExpiredDate = DateTime.Parse(Console.ReadLine());
 
@@ -98,7 +98,7 @@ namespace MP_EF_HeberAndrade
             );
 
             new ComputerService().Create(asset);
-            Write("Item is now in our list! ");
+            Write("Item is now in our list! \n PRESS KEY ENTER twice to END PROGRAM");
             Console.ReadKey();
             PageMainMenu();
             Menu();
@@ -106,9 +106,9 @@ namespace MP_EF_HeberAndrade
 
         static void PageUpdateItems()
         {
-            Header("Create");
+            Header("UPDATE");
 
-            Console.WriteLine("Which item to update? ");
+            Console.WriteLine("Which number item to update? ");
 
             int itemId = int.Parse(Console.ReadLine());
 
@@ -166,7 +166,7 @@ namespace MP_EF_HeberAndrade
 
                         break;
                     case "e":
-                        Write("Write a new Expiration date! # years from now ex.2023/12/01");
+                        Write("Write a new Expiration date! 3 years from now ex.2023/12/01");
 
                         var newExpiredDate = DateTime.Parse(Console.ReadLine());
                         computer.ExpiredDate = newExpiredDate;
@@ -286,29 +286,5 @@ namespace MP_EF_HeberAndrade
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(text);
         }
-
-
-        //             Console.WriteLine("Hello World!");
-        //           using (var dbContext = new CustomTreatmentContext())
-        //         {
-        //           dbContext.Add(new Diet("Superduper diet", "Hard", 2, 200));
-        //         dbContext.SaveChanges();
-        //       var result = dbContext.Diets.ToList()
-        //         .Where(d => d.DietDaysProgram > 0)
-        //       .Take(5)
-        //     .OrderBy(d => d.DietDaysProgram)
-        //                       .Select(d => d.DietName);
-        //
-        //                 var resultSum = dbContext.Diets
-        //                   .Where(d => d.DietDaysProgram > 0)
-        //                 .OrderBy(d => d.DietDaysProgram)
-        //               .GroupBy(o => 1)
-        //             .Select(d =>
-        //               "Average days:" + (float)d.Sum(d => d.DietDaysProgram) / (float)Math.Max(1, d.Count()) +
-        //             "(total diets: " + d.Count() + ")"
-        //       );
-        //                   Console.WriteLine(string.Join(", ", result));
-        //                 Console.WriteLine(string.Join(", ", resultSum));
-        //           }
     }
 }
