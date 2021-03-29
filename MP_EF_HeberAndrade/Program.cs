@@ -12,7 +12,27 @@ namespace MP_EF_HeberAndrade
         {
         AssetsContext context;
         IEnumerable<Asset> list;
-         void Run()
+
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine($">.............................................................<\n");
+            Console.WriteLine($"       Welcomen to IDESIGNER.SE\n");
+            Console.WriteLine($">.............................................................<\n");
+            Console.ForegroundColor = ConsoleColor.Red;
+
+            Console.WriteLine($"              INVENTORY        \n");
+            Console.WriteLine($">.............................................................<\n");
+            Console.ResetColor();
+
+            WriteLine("     Press key A,B,C or D Instructions: ");
+            WriteLine("     a) Back Menu");
+            WriteLine("     b) Create an Item");
+            WriteLine("     c) Update and Item");
+            WriteLine("     d) Delete and Item");
+
+            ConsoleKey command = Console.ReadKey(true).Key;
+
+
+            void Run()
             {
                 new App();
                 PageMainMenu();
@@ -22,15 +42,6 @@ namespace MP_EF_HeberAndrade
             void PageMainMenu()
             {
                 Header("Menu");
-
-                ShowAllBlogPostsBrief();
-
-                WriteLine("Press key A,B,C or D Instructions: ");
-                WriteLine("a) Back Menu");
-                WriteLine("b) Create an Item");
-                WriteLine("c) Update and Item");
-                WriteLine("d) Delete and Item");
-
                 ConsoleKey command = Console.ReadKey(true).Key;
 
                 if (command == ConsoleKey.A)
@@ -44,6 +55,9 @@ namespace MP_EF_HeberAndrade
 
                 if (command == ConsoleKey.D)
                     DeletePost();
+                ShowAllBlogPostsBrief();
+
+
             }
             void CreatePost()
             {
