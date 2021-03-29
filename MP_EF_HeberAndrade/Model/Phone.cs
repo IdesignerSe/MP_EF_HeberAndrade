@@ -1,12 +1,9 @@
-﻿using Microsoft.Data.SqlClient;
-
-namespace MP_EF_HeberAndrade
+﻿namespace MP_EF_HeberAndrade
 
 {
     public class Phone : Asset
     {
-
-        public Phone(string brand, string modelName, string purchaseDate, string inicialCost, string expiredDate, string expiredCost)
+        public Phone(string brand, string modelName, int purchaseDate, int inicialCost, int expiredDate, int expiredCost)
         {
             Brand = brand;
             ModelName = modelName;
