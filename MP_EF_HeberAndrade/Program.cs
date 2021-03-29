@@ -16,10 +16,7 @@ namespace MP_EF_HeberAndrade
             {
                 new App();
                 PageMainMenu();
-                CreatePost();
-                PageUpdatePost();
-                DeletePost();
-                ShowAllBlogPostsBrief();
+
             }
 
              void PageMainMenu()
@@ -105,7 +102,7 @@ namespace MP_EF_HeberAndrade
             }
              void PageUpdatePost()
             {
-                Header("Uppdatera");
+                Header("Update");
 
                 ShowAllBlogPostsBrief();
 
