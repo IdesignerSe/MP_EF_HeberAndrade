@@ -19,7 +19,7 @@ namespace MP_EF_HeberAndrade
 
             }
 
-             void PageMainMenu()
+            void PageMainMenu()
             {
                 Header("Menu");
 
@@ -45,7 +45,7 @@ namespace MP_EF_HeberAndrade
                 if (command == ConsoleKey.D)
                     DeletePost();
             }
-             void CreatePost()
+            void CreatePost()
             {
                 Header("Create");
 
@@ -100,7 +100,7 @@ namespace MP_EF_HeberAndrade
                 Console.ReadKey();
                 PageMainMenu();
             }
-             void PageUpdatePost()
+            void PageUpdatePost()
             {
                 Header("Update");
 
@@ -129,7 +129,7 @@ namespace MP_EF_HeberAndrade
                 Console.ReadKey();
                 PageMainMenu();
             }
-             void DeletePost()
+            void DeletePost()
             {
                 Header("DELETE");
 
@@ -150,7 +150,7 @@ namespace MP_EF_HeberAndrade
                 Console.ReadKey();
                 PageMainMenu();
             }
-             void ShowAllBlogPostsBrief()
+            void ShowAllBlogPostsBrief()
             {
                 using (context = new AssetsContext())
                 {
@@ -166,7 +166,7 @@ namespace MP_EF_HeberAndrade
                 }
                 WriteLine();
             }
-             void Header(string text)
+            void Header(string text)
             {
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Blue;
