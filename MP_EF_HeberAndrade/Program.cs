@@ -15,6 +15,16 @@ namespace MP_EF_HeberAndrade
             Console.WriteLine($"       Welcome to IDESIGNER.SE\n");
             Console.WriteLine($">.............................................................<\n");
 
+            using (var dbContext = new AssetsContext())
+            {
+                //(string brand, string modelName, int purchaseDate, int inicialCost, int expiredDate, int expiredCost)
+                // new Asset("MacBook", "Pro 2018 15 inch ", 20180101, 13000, 20211201, 8000),
+                dbContext.Add(new Computer("MacBook", "Pro 2018 15 inch ", new DateTime(2018, 1, 1), 13000, new DateTime(2021, 12, 01), 8000));
+                dbContext.Add(new Phone("Iphuff", "Pro 2018 15 inch ", new DateTime(2018, 1, 1), 13000, new DateTime(2021, 12, 1), 8000));
+                dbContext.Add(new Tv("SamAbsurd", "Pro 2018 15 inch ", new DateTime(2018, 1, 1), 13000, new DateTime(2021, 12, 1), 8000));
+                dbContext.SaveChanges();
+            }
+
             PageMainMenu();
         }
 
@@ -33,35 +43,17 @@ namespace MP_EF_HeberAndrade
 
             using (var dbContext = new AssetsContext())
             {
-                //(string brand, string modelName, int purchaseDate, int inicialCost, int expiredDate, int expiredCost)
-                // new Asset("MacBook", "Pro 2018 15 inch ", 20180101, 13000, 20211201, 8000),
-                dbContext.Add(new Computer("MacBook", "Pro 2018 15 inch ", new DateTime(2018, 1, 1), 13000, new DateTime(2021, 12, 01), 8000));
-                dbContext.Add(new Phone("Iphuff", "Pro 2018 15 inch ", new DateTime(2018, 1, 1), 13000, new DateTime(2021, 12, 1), 8000));
-                dbContext.Add(new Tv("SamAbsurd", "Pro 2018 15 inch ", new DateTime(2018, 1, 1), 13000, new DateTime(2021, 12, 1), 8000));
-                dbContext.SaveChanges();
+                Write("Brand, Model and year, Date of purchase, Expiration date, Expiration price");
+                var formattedItems = dbContext.Computers
+                    .Select(computer => (
+                        $"ID: {computer.Id}, {computer.Brand}, {computer.ModelName}, " +
+                        $"{computer.PurchaseDate}, {computer.InicialCost}, " +
+                        $"{computer.ExpiredDate}, {computer.ExpiredCost}"
+                    )).ToList();
 
-                var brand = dbContext.Computers
-                  .Select(brand => brand.Brand).ToList();
-
-                var modelName = dbContext.Computers
-                    .Select(modelName => modelName.ModelName).ToList();
                 Console.WriteLine();
 
-                var purchaseDate = dbContext.Computers
-                    .Select(purchaseDate => purchaseDate.PurchaseDate).ToList();
-
-                var inicialCost = dbContext.Computers
-                 .Select(inicialCost => inicialCost.InicialCost).ToList();
-
-                var expiredDate = dbContext.Computers
-                  .Select(expiredDate => expiredDate.ExpiredDate).ToList();
-
-                var expiredCost = dbContext.Computers
-                  .Select(expiredCost => expiredCost.ExpiredCost).ToList();
-
-                Console.WriteLine(string.Join("                     Is a Computer Brand.\n", brand));
-                Console.WriteLine(string.Join("           Is Computer Model Name\n", modelName));
-                Console.WriteLine(string.Join("                    Is a Computer purchase Date\n", purchaseDate));
+                Console.WriteLine(string.Join("     Is a Computer\n", formattedItems) + "     Is a Computer\n");
             }
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             Console.WriteLine($">.............................................................<\n");
@@ -128,8 +120,72 @@ namespace MP_EF_HeberAndrade
             }
             else
             {
-                Console.WriteLine($"Your Actual Item id is: {computer.Id}");
+                Console.WriteLine($"Updating Item with id: {computer.Id}");
             }
+
+            var finished = false;
+            while (!finished)
+            {
+                Write("What do you want to update?");
+                Write($"a) Brand ({computer.Brand})");
+                Write($"b) Model and year ({computer.ModelName})");
+                Write($"c) Date of purchase ({computer.PurchaseDate})");
+                Write($"d) Initial cost ({computer.InicialCost})");
+                Write($"e) Expiration (discontinuation date, {computer.ExpiredDate})");
+                Write($"f) Expiration price (estimated price at end of availability) ({computer.ExpiredCost})");
+                Write("g) (Or return) Save and go to menu");
+                Write("");
+                Write("Write your choice and press enter: ");
+                string option = Console.ReadKey().KeyChar.ToString().ToLowerInvariant();
+                Write("");
+                switch (option)
+                {
+                    case "a":
+                        string newBrand = Console.ReadLine();
+                        computer.Brand = newBrand;
+                        break;
+                    case "b":
+                        Write("Write a new model and year: ex. Macbest 2030 ");
+
+                        string newModelName = Console.ReadLine();
+                        computer.ModelName = newModelName;
+
+                        break;
+                    case "c":
+                        Write("Write a new date of purchase! ex. 2021/12/01");
+
+                        var newPurchaseDate = DateTime.Parse(Console.ReadLine());
+                        computer.PurchaseDate = newPurchaseDate;
+
+                        break;
+                    case "d":
+                        Write("Write a new inicial cost! ex. 13,000");
+
+                        int.TryParse(Console.ReadLine(), out var newInitialCost);
+                        computer.InicialCost = newInitialCost;
+
+                        break;
+                    case "e":
+                        Write("Write a new Expiration date! # years from now ex.2023/12/01");
+
+                        var newExpiredDate = DateTime.Parse(Console.ReadLine());
+                        computer.ExpiredDate = newExpiredDate;
+
+                        break;
+                    case "f":
+                        Write("Write a new Expiration Price! To sale out");
+
+                        int.TryParse(Console.ReadLine(), out var newExpiredCost);
+                        computer.ExpiredCost = newExpiredCost;
+                        break;
+                    default:
+                        Write("Editing complete saving now");
+                        finished = true;
+                        break;
+                }
+            }
+
+            new ComputerService().Update(computer);
 
             Menu();
         }
