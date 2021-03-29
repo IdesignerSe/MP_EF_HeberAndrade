@@ -31,7 +31,6 @@ namespace MP_EF_HeberAndrade
 
             ConsoleKey command = Console.ReadKey(true).Key;
 
-
             void Run()
             {
                 new App();
@@ -55,6 +54,7 @@ namespace MP_EF_HeberAndrade
 
                 if (command == ConsoleKey.D)
                     DeletePost();
+
                 ShowAllBlogPostsBrief();
 
 
